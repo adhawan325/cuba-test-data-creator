@@ -2,6 +2,6 @@
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-nontdc"
           insertBefore="administration">
-        <item screen="test-data-creator-screen"/>
+        <item screen="nontdc$testData"/>
     </menu>
 </menu-config>
