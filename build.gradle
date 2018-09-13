@@ -14,6 +14,8 @@ buildscript {
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+        // Bintray upload plugin
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0"
     }
 }
 
@@ -201,4 +203,37 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3.1'
+}
+
+subprojects {
+    apply plugin: 'com.jfrog.bintray'
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+        configurations = ['archives']
+
+        // make files public ?
+        publish = true
+        // override existing artifacts?
+        override = false
+
+        // metadata
+        pkg {
+            repo = 'cuba-test-data-creator'           // your repository name
+            name = 'nontdc'  // package name - it will be created upon upload
+            desc = 'CUBA Test Data Creator'  // optional package description
+
+            websiteUrl = 'https://github.com/adhawan325/cuba-test-data-creator'
+            issueTrackerUrl = 'https://github.com/adhawan325/cuba-test-data-creator/issues'
+            vcsUrl = 'https://github.com/adhawan325/cuba-test-data-creator.git' // mandatory for Open Source projects
+
+            licenses = ["Apache-2.0"]
+            labels = ['cuba-platform', 'opensource']
+
+            //githubRepo = 'amazingsearch/cuba-platform' // optional Github repository
+            //githubReleaseNotesFile = 'README.md' // optional Github readme file
+        }
+    }
 }
