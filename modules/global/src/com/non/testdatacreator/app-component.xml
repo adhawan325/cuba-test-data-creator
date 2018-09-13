@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="com.haulmont.cuba, com.non.dta">
+    <module blocks="*"
+            name="global">
+        <artifact appJar="true"
+                  name="nontdc-global"/>
+        <property name="cuba.persistenceConfig"
+                  value="+com/non/testdatacreator/persistence.xml"/>
+        <property name="cuba.metadataConfig"
+                  value="+com/non/testdatacreator/metadata.xml"/>
+        <property name="cuba.viewsConfig"
+                  value="+com/non/testdatacreator/views.xml"/>
+    </module>
+    <module blocks="core"
+            dependsOn="global"
+            name="core">
+        <artifact appJar="true"
+                  name="nontdc-core"/>
+        <property name="cuba.springContextConfig"
+                  value="+com/non/testdatacreator/spring.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+com.non.testdatacreator.core"/>
+    </module>
+    <module blocks="web"
+            dependsOn="global"
+            name="web">
+        <artifact appJar="true"
+                  name="nontdc-web"/>
+        <artifact classifier="web"
+                  configuration="webcontent"
+                  ext="zip"
+                  name="nontdc-web"/>
+        <property name="cuba.springContextConfig"
+                  value="+com/non/testdatacreator/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+com/non/testdatacreator/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+com/non/testdatacreator/web-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+com/non/testdatacreator/web-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+com/non/testdatacreator/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+com.non.testdatacreator.web"/>
+    </module>
+</app-component>

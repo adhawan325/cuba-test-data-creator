@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.non.testdatacreator.web.screens.TestDataCreatorScreen"
+        messagesPack="com.non.testdatacreator.web.screens">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <scrollBox id="scrollBox"
+                   height="100%">
+            <grid id="grid"
+                  spacing="true">
+                <columns count="4"/>
+                <rows>
+                    <row>
+                        <buttonsPanel colspan="4">
+                            <button id="getFields"
+                                    caption="Get Fields"
+                                    invoke="onGetFieldsClick"/>
+                            <button id="createButton"
+                                    caption="Create"
+                                    invoke="onCreateButtonClick"/>
+                        </buttonsPanel>
+                    </row>
+                    <row>
+                        <lookupField id="entityField"
+                                     caption="Select an Entity"
+                                     colspan="2"
+                                     required="true"/>
+                        <textField id="numEntities"
+                                   caption="Create How Many?"
+                                   colspan="2"/>
+                    </row>
+                </rows>
+            </grid>
+        </scrollBox>
+    </layout>
+</window>
