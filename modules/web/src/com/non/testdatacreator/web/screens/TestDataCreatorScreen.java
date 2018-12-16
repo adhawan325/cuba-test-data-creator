@@ -86,10 +86,9 @@ public class TestDataCreatorScreen extends AbstractWindow {
         PickerField field = componentsFactory.createComponent(PickerField.class);
         field.setMetaClass(metadata.getClass(metaProperty.getJavaType()));
         PickerField.LookupAction action = field.addLookupAction();
-
-        action.setLookupScreen(metadata.getClass(metaProperty.getJavaType()) + ".lookup");
+        action.setLookupScreen(metadata.getClass(metaProperty.getJavaType()) + ".browse");
         field.setId(metaProperty.getName());
-        field.setCaption(metadata.getClass(metaProperty.getJavaType()) + "");
+        field.setCaption(metaProperty.getName());
         if (metaProperty.isMandatory()) {
             ((PickerField) field).setRequired(true);
         }
